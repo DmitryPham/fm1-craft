@@ -302,26 +302,26 @@ static void draw_page(void)
     if (ui.layer[0])
         cv_text(8, 26, &FONT_B, ui.layer, C_WHITE);
     else
-        cv_text(8, 28, &FONT_XS, linked() ? "NOTHING SELECTED" : "START FM1_FIGCRAFT.PY", C_DIM);
+        cv_text(8, 28, &FONT_XS, linked() ? "NOTHING SELECTED" : "RUN START.BAT ON THE PC", C_DIM);
     cv_blit(0, 34);
 }
 
 static void draw_cards(void)
 {
     uint32_t i, now = plat_ms();
-    cv_begin(240, 100, C_BLACK);
+    cv_begin(240, 110, C_BLACK);
     for (i = 0; i < 4u; i++) {
-        int32_t x = 4 + (int32_t)(i % 2u) * 118, y = 2 + (int32_t)(i / 2u) * 50, w = 114, h = 46;
+        int32_t x = 4 + (int32_t)(i % 2u) * 118, y = 2 + (int32_t)(i / 2u) * 54, w = 114, h = 52;
         int lit = ui.turned_at[EN_K1 + i] && now - ui.turned_at[EN_K1 + i] < 350u;
         char t[8] = "K";
         frame_rect(x, y, w, h, lit ? C_HI : C_LINE);
         int_text((int32_t)i + 1, t + 1);
         cv_text(x + 6, y + 4, &FONT_XS, t, C_DIM);
         cv_text(x + 22, y + 4, &FONT_XS, KNOB_LABEL[set.page][i], lit ? C_HI : C_GRAY);
-        cv_text(x + 6, y + 17, &FONT_B, ui.val[i][0] ? ui.val[i] : "--", ui.val[i][0] ? C_WHITE : C_DIM);
-        cv_rect(x + 6, y + h - 7, w - 12, 3, C_LINE);
+        cv_text(x + 6, y + 19, &FONT_M, ui.val[i][0] ? ui.val[i] : "--", ui.val[i][0] ? C_WHITE : C_DIM);
+        cv_rect(x + 6, y + h - 6, w - 12, 3, C_LINE);
         if (ui.bar[i] != 0xFFu)
-            cv_rect(x + 6, y + h - 7, (w - 12) * ui.bar[i] / 100, 3, lit ? C_WHITE : C_HI);
+            cv_rect(x + 6, y + h - 6, (w - 12) * ui.bar[i] / 100, 3, lit ? C_WHITE : C_HI);
     }
     cv_blit(0, 82);
 }
@@ -331,14 +331,14 @@ static void draw_keys(void)
     static const uint8_t WK[16] = PLAT_WHITE_KEYS, BK[11] = PLAT_BLACK_KEYS;
     static const uint8_t AT[11] = {0, 1, 2, 4, 5, 7, 8, 9, 11, 12, 14};
     uint32_t i;
-    cv_begin(240, 52, C_BLACK);
+    cv_begin(240, 48, C_BLACK);
     for (i = 0; i < 16u; i++)
-        cv_rect(4 + (int32_t)i * 14, 14, 13, 16, ui.keys >> WK[i] & 1u ? C_HI : C_LINE);
+        cv_rect(8 + (int32_t)i * 14, 13, 13, 14, ui.keys >> WK[i] & 1u ? C_HI : C_LINE);
     for (i = 0; i < 11u; i++)
-        cv_rect(4 + (int32_t)AT[i] * 14 + 8, 2, 11, 11, ui.keys >> BK[i] & 1u ? C_HI : C_DIM);
-    cv_text(4, 36, &FONT_XS, "OCT-/+ LAYER", C_GRAY);
-    cv_text(110, 36, &FONT_XS, "HOME ENV LFO ARP PAGE", C_DIM);
-    cv_blit(0, 186);
+        cv_rect(8 + (int32_t)AT[i] * 14 + 8, 2, 11, 10, ui.keys >> BK[i] & 1u ? C_HI : C_DIM);
+    cv_text(8, 31, &FONT_XS, "OCT -/+  LAYER", C_GRAY);
+    cv_text(232 - text_w(&FONT_XS, "GLO  x10"), 31, &FONT_XS, "GLO  x10", C_GRAY);
+    cv_blit(0, 192);
 }
 
 static void draw(void)
