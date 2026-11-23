@@ -8,10 +8,10 @@ words = "words.tsv"
 ble = false                    # USB only
 # the site / firmware.json (only a release build needs these filled)
 tagline = "controller for FigCraft"
-repo = ""
+repo = "https://github.com/DmitryPham/fm1-craft"
 licence = "MPL-2.0"
 credits = "Built on fm1-base by Charles Vestal and felucca-bsp by Leo Kuroshita (Hugelton Instruments)."
-author = ""
+author = "DmitryPham"
 description = "Turns the FM-1 into a controller for FigCraft and Figma: keys as hotkeys, knobs as relative controllers, the selected layer's values on the screen."
 tags = ["controller", "utility"]
 install = ""
