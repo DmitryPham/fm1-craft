@@ -1,0 +1,19 @@
+# FM-1 CRAFT's build settings (base/tools/build.py)
+name = "CRAFT"                 # this names the build's files: app/build/craft.fwsc
+id_prefix = "FM-1_63"          # package identity: dev FM-1_6300, releases FM-1_63XXYYZZ
+usb_manufacturer = "fm1-craft"
+usb_product = "FM-1 CRAFT"     # the MIDI port's name on the computer
+o2 = []
+words = "words.tsv"
+ble = false                    # USB only
+# the site / firmware.json (only a release build needs these filled)
+tagline = "controller for FigCraft"
+repo = ""
+licence = "MPL-2.0"
+credits = "Built on fm1-base by Charles Vestal and felucca-bsp by Leo Kuroshita (Hugelton Instruments)."
+author = ""
+description = "Turns the FM-1 into a controller for FigCraft and Figma: keys as hotkeys, knobs as relative controllers, the selected layer's values on the screen."
+tags = ["controller", "utility"]
+install = ""
+site = ""
+screenshot = ""

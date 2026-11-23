@@ -1,0 +1,40 @@
+# FM-1 CRAFT in the host simulator: ./build.sh --host, then
+#   app/build/host/craft_host app/tests/basic.txt app/build/host
+wait 600
+shot boot.png
+expect page 0
+expect linked 0
+# a key: a note on channel 16 (key 0 = F3 = 53)
+key 0 down
+wait 30
+expect_out USB 9F 35 64
+key 0 up
+wait 30
+# K1 three detents clockwise: CC 20, relative
+turn K1 3
+wait 30
+expect turns3 3
+turn K2 -2
+wait 30
+# a page button: its controller, and the page
+tap ENV
+wait 30
+expect page 1
+expect_out USB BF 1C 01
+tap HOME
+wait 30
+expect page 0
+# the script's state: page 0, bar 50 on K1, the layer and four values
+sysex F0 7D 46 43 01 00 32 7F 7F 7F 48 65 72 6F 00 31 32 38 00 33 34 30 00 31 30 30 25 00 38 35 25 00 F7
+wait 30
+expect linked 1
+expect bar0 50
+shot linked.png
+turn K4 1
+wait 50
+shot turning.png
+sysex F0 7D 46 43 02 43 4F 50 59 00 31 20 4C 41 59 45 52 00 F7
+wait 30
+shot say.png
+wait 3500
+expect linked 0
